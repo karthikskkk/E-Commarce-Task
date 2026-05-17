@@ -1,0 +1,114 @@
+<div class="max-w-7xl mx-auto p-6">
+  
+
+  <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+    <h1 class="text-4xl font-bold">Checkout Summary</h1>
+
+    <a routerLink="/cart" class="bg-black text-white px-5 py-3 rounded-xl"> Back To Cart </a>
+  </div>
+
+  
+
+  @if (cartItems().length === 0) {
+    <div class="bg-white rounded-2xl shadow-lg p-10 text-center">
+      <h2 class="text-3xl font-bold mb-4">Your Cart is Empty</h2>
+
+      <p class="text-gray-500 mb-6">Add products to continue checkout</p>
+
+      <a routerLink="/products" class="bg-black text-white px-6 py-3 rounded-xl">
+        Continue Shopping
+      </a>
+    </div>
+  } @else {
+    <div class="grid lg:grid-cols-3 gap-8">
+      
+
+      <div class="lg:col-span-2">
+        @for (item of cartItems(); track item.id) {
+          <div class="bg-white rounded-2xl shadow-lg p-5 mb-5">
+            <div class="flex flex-col md:flex-row justify-between gap-5">
+              
+
+              <div class="flex gap-5">
+                <img [src]="item.image" class="w-28 h-28 object-contain" />
+
+                <div>
+                  <h2 class="text-xl font-bold">
+                    {{ item.title }}
+                  </h2>
+
+                  <p class="text-gray-500 mt-2">
+                    {{ item.category }}
+                  </p>
+                </div>
+              </div>
+
+              
+
+              <div class="flex flex-col items-end justify-center gap-2">
+                <p class="font-medium">
+                  Quantity:
+                  <span class="font-bold">
+                    {{ item.quantity }}
+                  </span>
+                </p>
+
+                <p class="font-medium">
+                  Price:
+                  <span class="font-bold"> ₹ {{ item.price }} </span>
+                </p>
+
+                <p class="text-2xl font-bold text-green-600">₹ {{ item.price * item.quantity }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      
+
+      <div class="bg-white rounded-2xl shadow-lg p-6 h-fit sticky top-24">
+        <h2 class="text-2xl font-bold mb-6">Payment Summary</h2>
+
+        
+
+        <div class="space-y-5">
+          <div class="flex justify-between">
+            <span> Subtotal </span>
+
+            <span class="font-semibold"> ₹ {{ subtotal() }} </span>
+          </div>
+
+          <div class="flex justify-between">
+            <span> GST (18%) </span>
+
+            <span class="font-semibold"> ₹ {{ gstAmount() }} </span>
+          </div>
+
+          <div class="flex justify-between text-green-600">
+            <span> Discount </span>
+
+            <span class="font-semibold"> - ₹ {{ discount() }} </span>
+          </div>
+
+          <hr />
+
+          <div class="flex justify-between text-3xl font-bold">
+            <span> Final Amount </span>
+
+            <span> ₹ {{ finalAmount() }} </span>
+          </div>
+        </div>
+
+        
+
+        <button
+          (click)="orderPlaced()"
+          class="w-full bg-black text-white py-4 rounded-xl mt-8 text-lg font-semibold hover:bg-gray-800 transition"
+        >
+          Place Order
+        </button>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,52 @@
+<div class="col-xl-12 myDashboardItems">
+  <div class="dashboard-box">
+    <h2>Dashboard Summary</h2>
+    <div class="dashboard-item">
+      <strong>Total Land Records:</strong> {{ dashboardData && dashboardData.total_land_records }}
+    </div>
+    <div class="dashboard-item">
+      <strong>Total Observations (Last Month):</strong>
+      {{ dashboardData && dashboardData.total_observations_lastMonth }}
+    </div>
+    <div class="dashboard-item">
+      <strong>Total Samples (Last Month):</strong>
+      {{ dashboardData && dashboardData.total_samples_lastMonth }}
+    </div>
+    <div class="dashboard-item">
+      <strong>Total Land Area:</strong> {{ dashboardData && dashboardData.total_land_area }}
+    </div>
+    <div class="dashboard-item">
+      <strong>Total Observations:</strong> {{ dashboardData && dashboardData.total_observations }}
+    </div>
+    <div class="dashboard-item">
+      <strong>Total Samples:</strong> {{ dashboardData && dashboardData.total_samples }}
+    </div>
+  </div>
+  <div class="Weather-dashboard-container">
+    <h3>Weather Sensor Data</h3>
+    <p><strong>ID:</strong> {{ weatherData?.id }}</p>
+    <p><strong>Created On:</strong> {{ weatherData?.createdOn | date: 'medium' }}</p>
+    <p><strong>Device ID:</strong> {{ weatherData?.deviceId }}</p>
+    <p><strong>Altitude:</strong> {{ weatherData?.altitude }} m</p>
+    <p><strong>Location:</strong> {{ weatherData?.location }}</p>
+    <p><strong>Cloud Info:</strong> {{ weatherData?.cloudInfo }}</p>
+    <p><strong>Battery Info:</strong> {{ weatherData?.batteryInfo }}%</p>
+    <p><strong>Humidity:</strong> {{ weatherData?.weatherHumidity }} %</p>
+    <p><strong>Light Intensity:</strong> {{ weatherData?.weatherLightIntens }}</p>
+    <p><strong>Pressure:</strong> {{ weatherData?.weatherPressure }} hPa</p>
+    <p><strong>Rain Rate:</strong> {{ weatherData?.weatherRainRate }}</p>
+    <p><strong>Temperature:</strong> {{ weatherData?.weatherTemp }} °C</p>
+    <p><strong>Wind Direction:</strong> {{ weatherData?.weatherWindDirection }}</p>
+    <p><strong>Wind Speed:</strong> {{ weatherData?.weatherWindSpeed }} m/s</p>
+  </div>
+  <div class="Device-dashboard-container">
+    <h3>DeviceList</h3>
+    <div>
+      <p *ngFor="let id of deviceIds">{{ id }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Loading dashboard data...</p>
+</ng-template>

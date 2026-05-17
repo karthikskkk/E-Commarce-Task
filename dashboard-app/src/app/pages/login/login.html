@@ -1,0 +1,88 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="login()"
+    class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md"
+  >
+    
+
+    <h1 class="text-3xl font-bold text-center mb-8">Login</h1>
+
+    
+
+    <div class="mb-5">
+      <label class="block mb-2 font-medium"> Email </label>
+
+      <input
+        type="email"
+        formControlName="email"
+        placeholder="Enter Email"
+        class="w-full border p-3 rounded-xl outline-none focus:border-black"
+      />
+
+      
+
+      @if ((email.touched || email.dirty) && email.errors) {
+        <div class="mt-2 text-red-500 text-sm">
+          @if (email.errors['required']) {
+            <p>Email is required</p>
+          }
+
+          @if (email.errors['email']) {
+            <p>Invalid email format</p>
+          }
+        </div>
+      }
+    </div>
+
+    
+
+    <div class="mb-5">
+      <label class="block mb-2 font-medium"> Password </label>
+
+      <input
+        type="password"
+        formControlName="password"
+        placeholder="Enter Password"
+        class="w-full border p-3 rounded-xl outline-none focus:border-black"
+      />
+
+      
+
+      @if ((password.touched || password.dirty) && password.errors) {
+        <div class="mt-2 text-red-500 text-sm">
+          @if (password.errors['required']) {
+            <p>Password is required</p>
+          }
+
+          @if (password.errors['minlength']) {
+            <p>Minimum 6 characters required</p>
+          }
+
+          @if (password.errors['pattern']) {
+            <p>Must contain: 1 uppercase letter and 1 number</p>
+          }
+        </div>
+      }
+    </div>
+
+    
+
+    <button
+      type="submit"
+      class="w-full bg-black text-white py-3 rounded-xl hover:bg-gray-800 transition"
+    >
+      Login
+    </button>
+
+    
+
+    <div class="mt-6 bg-gray-100 p-4 rounded-xl text-sm">
+      <p class="font-bold mb-2">Demo Credentials</p>
+
+      <p>Email: admin@gmail.com</p>
+
+      <p>Password: Admin@123</p>
+    </div>
+  </form>
+</div>
